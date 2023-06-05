@@ -13,7 +13,7 @@ import { authContext } from './context/Auth.context';
 
 function Nav() {
   const navigate = useNavigate()
-  const currentUser = useContext(authContext)
+  const {currentUser} = useContext(authContext)
   return (
     <>
         <Box sx={{ flexGrow: 1 }}>
@@ -44,8 +44,10 @@ function Nav() {
               currentUser &&
               (
                 <>
+                  <Button component={NavLink} to="notes" color="inherit">Note</Button>
+                  <Button component={NavLink} to="add-note" color="inherit">Add Note</Button>
                   <Button component={NavLink} to="profile" color="inherit">Profile</Button>
-                  <Button component={NavLink} color="inherit" >Private</Button>
+                  <Button component={NavLink} to="private" color="inherit" >Private</Button>
                   <Button onClick={()=> {
                     signOut(auth) 
                     navigate('/login') 

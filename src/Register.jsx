@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { Copyright } from '@mui/icons-material';
 import { Link as Navigator, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { Snackbar } from '@mui/material';
 
 import { auth } from './utils/firebase.config';
@@ -38,6 +38,7 @@ function Register() {
     })
   }
 
+
   const handleSubmit = async (e)=>{
     e.preventDefault()
     try{
@@ -45,7 +46,10 @@ function Register() {
       console.log(user);
       navigate('/profile')
       setSnackBarOpen(true)
-
+      updateProfile(auth.currentUser,{
+        displayName: userInfo.firstName + ' ' + userInfo.lastName,
+        // id:
+      })
     }catch(err){
       console.log(err.message);
     }

@@ -4,10 +4,10 @@ import { authContext } from '../context/Auth.context'
 
 function PublicRoutes({children}) {
     const location = useLocation()
-    const currentUser = useContext(authContext)
-    console.log(location.state);
+    const {currentUser} = useContext(authContext)
+    // console.log(location?.state?.from);
     const loadComp = currentUser ? (
-        <Navigate to={location.state?.from ? location.state.from : '/profile'} />
+        <Navigate to={location?.state?.from ? location.state.from : '/profile'} />
     ): children
     return(
         <div>
